@@ -28,7 +28,7 @@ Response to User
 
 ## 📸 Workflow
 
-![n8n Chatbot Workflow]BasicChatBot.png
+![n8n Chatbot Workflow](BasicChatBot.png)
 
 ## 📂 Files
 
