@@ -1,0 +1,146 @@
+{
+  "name": "Basic Chatbot",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "1bf99d31-b10c-41e2-b1dc-ccf021edbd91",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -656,
+        -192
+      ],
+      "webhookId": "85c37631-2c1a-4962-932b-5bc42e0f0e39"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a helpful assistant"
+        }
+      },
+      "id": "8ec35448-f433-4bef-b560-e09bbafa82f3",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -384,
+        -192
+      ]
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-20b",
+        "options": {}
+      },
+      "id": "57bcc9f1-7c81-4221-8e12-171851f50d5e",
+      "name": "Groq Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        80
+      ],
+      "credentials": {
+        "groqApi": {
+          "id": "j0FwU0J1kzeQRNPS",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "id": "d37800cd-f7a0-4752-b6e7-bb60d6f723dc",
+      "name": "Simple Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        -384,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d57cd35d-7a5e-4fe1-92df-00932f7171ca",
+      "name": "serp",
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        64
+      ],
+      "credentials": {
+        "serpApi": {
+          "id": "IphClB6imZZhZzT2",
+          "name": "SerpApi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "serp": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "b9eec3b1-0ff8-48ff-8ac5-fbea635a74aa",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6f8c270ffe54a9ed8aa276de9022f3abc5d3c33f5414d2b584c45f986b7fd568"
+  },
+  "nodeGroups": [],
+  "id": "AP2Auc4P7pwsDSwS",
+  "tags": []
+}
